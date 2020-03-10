@@ -7,14 +7,8 @@ function OrgCard() {
     'rgba(247, 211, 68, 1)',
     'rgba(122, 189, 244, 1)'
   ];
-
-  const cardClick = index => {
-    if (selectedIndex === index) {
-      setSelectedIndex(null);
-    } else {
-      setSelectedIndex(index);
-    }
-  };
+  const randomNumber = range => Math.floor(Math.random() * range)
+  const cardClick = index => setSelectedIndex( index === selectedIndex?null:index )
   return (
     <div>
       <div className="scrollableDiv">
@@ -22,7 +16,7 @@ function OrgCard() {
           return (
             <div
               className={`org_card ${i === selectedIndex ? "expanded" : ""}`}
-              style={i === selectedIndex ? {backgroundColor: bgColors[Math.floor(Math.random() * 3)]}:{}}
+              style={{ backgroundColor: i === selectedIndex && bgColors[randomNumber(3)] }}
               onClick={event => cardClick(i)}
             >
               <img src="./images/elBasma.jpg"></img>
