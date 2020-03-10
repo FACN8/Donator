@@ -144,7 +144,6 @@ export default function DialogInput() {
 
 function DialogLogIn() {
   const [open, setOpen] = React.useState(false);
-  const classes = useStyles();
 
   const handleClickOpen = () => {
     setOpen(true);
