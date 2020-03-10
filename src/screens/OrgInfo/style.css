@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+body,html{
+    background-color: #F0F0F0;
+}
+.orgMainDiv {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  background-image: url("https://cdn.dribbble.com/users/1090020/screenshots/7210751/media/ac663fb32960d2450217914bcce25dc9.png");
+  background-position: end bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
