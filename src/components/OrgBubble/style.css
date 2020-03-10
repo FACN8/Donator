@@ -1,0 +1,38 @@
+.scrollableDiv_bubble {
+  text-align: center;
+  user-select: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  min-height: 100px;
+  width: 60%;
+  border-radius: 25px;
+}
+
+.org_bubble {
+  height: 70px;
+  width: 70px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 40px;
+}
+
+.org_bubble img {   
+  width: 70px;
+  height: 70px;
+  margin-top: 2px;
+  border-radius: 40px;
+}
+
+@media screen and (max-width: 600px) {
+  .scrollableDiv_bubble {
+    overflow: scroll;
+    height: 20vh;
+    width: 80%;
+  }
+  .org_bubble {
+    justify-content: center;
+    align-self: center;
+  }
+}
