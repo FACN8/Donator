@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
 import ListItem from "@material-ui/core/ListItem";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
@@ -12,6 +11,8 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -29,15 +30,19 @@ const useStyles = makeStyles(theme => ({
   btnBottom: {
     display: "flex",
     justifyContent: "space-around"
+  },
+  margin: {
+    marginLeft: 8
   }
 }));
 
-function SimpleDialog(props) {
+function Login(props) {
   const classes = useStyles();
   const { onClose, open } = props;
   const [values, setValues] = React.useState({
     password: "",
-    showPassword: false
+    showPassword: false,
+    username: '',
   });
 
   const handleChange = prop => event => {
@@ -63,16 +68,21 @@ function SimpleDialog(props) {
       </DialogTitle>
       <List>
         <ListItem>
-          <TextField
+          <FormControl> 
+          <InputLabel className={classes.margin} htmlFor="standard-adornment-password">Email/Username</InputLabel>
+          <Input
             className={classes.textField}
             id="margin-none"
             label="Email/Username"
           />
+          </FormControl>
         </ListItem>
         <ListItem>
+        <FormControl>
+          <InputLabel className={classes.margin} htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
-            id="margin-none"
-            placeholder="Password"
+            id="standard-adornment-password"
+            label="password"
             className={classes.textField}
             type={values.showPassword ? "text" : "password"}
             value={values.password}
@@ -89,6 +99,7 @@ function SimpleDialog(props) {
               </InputAdornment>
             }
           />
+          </FormControl>
         </ListItem>
         <ListItem>
           <Button
@@ -104,12 +115,12 @@ function SimpleDialog(props) {
   );
 }
 
-SimpleDialog.propTypes = {
+Login.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired
 };
 
-export default function DialogInput() {
+function DialogInput() {
   const classes = useStyles();
 
   return (
@@ -159,10 +170,10 @@ function DialogLogIn() {
         <Button variant="outlined" color="primary" onClick={handleClickOpen}>
           LOG IN
         </Button>
-        <SimpleDialog open={open} onClose={handleClose} />
+        <Login open={open} onClose={handleClose} />
       </form>
     </div>
   );
 }
 
-export { DialogLogIn };
+export { DialogLogIn, DialogInput};

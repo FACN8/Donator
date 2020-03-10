@@ -1,5 +1,5 @@
 import React from 'react'
-import DialogInput from "../Dialog";
+import {DialogInput} from "../Dialog";
 
 function Footer() {
     return (

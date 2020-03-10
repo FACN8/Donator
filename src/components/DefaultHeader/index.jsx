@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import Language from "../Languages";
-import { DialogLogIn } from "../Dialog"
+import {DialogLogIn}  from "../Dialog"
 import Logo from '../../assets/logo.png'
 
 function DefaultHeader() {
