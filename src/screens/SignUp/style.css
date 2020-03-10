@@ -1,0 +1,49 @@
+#signUpHead {
+    /* position: absolute; */
+width: 105px;
+height: 6px;
+left: 155px;
+top: 39px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 28px;
+line-height: 18px;
+/* or 64% */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.2px;
+
+color: #DE4949;
+}
+
+
+.SignUpPage {
+    /* display: flex;
+    align-content: center; */
+    width: 90vw;
+}
+
+
+img.displayed {
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 400px;
+height: 139px;
+left: 0px;
+top: 708px;
+/* display: flex;
+justify-content: center; */
+/* background: url(kelly-sikkema-XX2WTbLr3r8-unsplash.jpg); */
+border-radius: 52px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    img.displayed {
+        width:90vw;
+    }
+  }
