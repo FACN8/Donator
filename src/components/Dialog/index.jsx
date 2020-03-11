@@ -13,6 +13,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import './style.css'
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -132,18 +133,18 @@ function DialogInput() {
           </Button>
         </div>
       </form>
-      <form className={classes.btnBottom}>
-        <div>
+      <form className={`footer ${classes.btnBottom}`}>
+        <div className='footer-buttons'>
           <Button variant="outlined" color="primary">
             Contact Us
           </Button>
         </div>
-        <div>
+        <div className='footer-buttons'>
           <Button variant="outlined" color="primary">
             Who Are We
           </Button>
         </div>
-        <div>
+        <div className='footer-buttons'>
           <Button variant="outlined" color="primary">
             Our Goal
           </Button>
