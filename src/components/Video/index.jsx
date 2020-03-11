@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Player from "react-player";
-import './style.css'
+
 
 export class Video extends Component {
     render() {
