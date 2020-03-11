@@ -1,0 +1,31 @@
+.cardsDiv {
+  display: flex;
+  width: 80%;
+  max-width: 100%;
+  flex-direction: row;
+  height: 150px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  margin: 10px auto ;
+  border-radius: 25px;
+}
+.card {
+  padding: 10px;
+  background-color: rgba(233, 233, 233, 0.8);
+  margin: 20px;
+  text-align: center;
+  display: flex;
+  width: 30vw;
+  flex-direction: column;
+  height: 150px;
+}
+@media screen and (max-width: 600px) {
+  .cardsDiv {
+    width: 100%;
+  }
+  .card {
+    width: 50vw;
+    flex-direction: column;
+    height: 150px;
+  }
+}

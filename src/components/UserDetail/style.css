@@ -1,6 +1,9 @@
-fieldset {
+.userDetail {
+  justify-content: center;
+  margin: 10px auto;
+  padding: 10px;
   position: relative;
-  width: 60vw;
+  width: 70%;
 }
 .legend2 {
   position: absolute;
@@ -17,13 +20,12 @@ fieldset {
   border: 0px;
   background-color: rgba(236, 90, 62, 1);
 }
-.input_label{
-    font-size: 25px;
+.input_label {
+  font-size: 25px;
 }
-.form-control{
-    font-size: 18px;
+.form-control {
+  font-size: 18px;
 }
-legend{
-    font-size: 30px;
-
+legend {
+  font-size: 30px;
 }

@@ -60,7 +60,7 @@ function UserDetail() {
   return (
     <fieldset className="userDetail">
       <legend>User Details:</legend>
-      <div class="legend2">
+      <div className="legend2">
         <button
           type="button"
           onClick={() => editMode()}
@@ -72,8 +72,8 @@ function UserDetail() {
         </button>
       </div>
       <form role="form">
-      {InputDivsInfo.map((objInput) => 
-        <div className="form-group">
+      {InputDivsInfo.map((objInput,i) => 
+        <div key={i} className="form-group">
       <label className='input_label'>{objInput.labelName}: </label>
       <input
             value={objInput.value}

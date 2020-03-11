@@ -1,9 +1,12 @@
 import React from 'react'
 import UserDetail from '../../components/UserDetail'
+import UserStats from '../../components/UserStats'
+import './style.css'
 function Profile() {
     return (
-        <div>
+        <div className='profile'>
             <UserDetail/>
+            <UserStats/>
         </div>
     )
 }
