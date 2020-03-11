@@ -16,7 +16,7 @@ function LandingPage() {
         <Video />
       </div>
       <br></br>
-      <h2 id='organizations'>Organizations We Work With</h2>
+      <h2 className='organizations'>Organizations We Work With</h2>
       <Footer />
     </div>
   );

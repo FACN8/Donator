@@ -5,7 +5,7 @@ import './style.css'
 export class Video extends Component {
     render() {
         return (
-            <div className="video_div">
+            <div>
                <center> 
                    <Player width="90%" url="https://www.youtube.com/watch?v=Odg1BIfq60E"
                  autoPlay muted />
