@@ -13,44 +13,70 @@ function UserDetail() {
       labelName: "Full Name",
       value: fullName,
       type: "text",
-      onChange: event=>{handleFullNameChange(event.target.value)}
+      onChange: event => {
+        handleFullNameChange(event.target.value);
+      },
+      onFocus: () => {
+        handleFullNameChange("");
+      }
     },
     {
       labelName: "Password",
       value: password,
       type: "password",
-      onChange: event=>{handlePasswordChange(event.target.value)}
+      onChange: event => {
+        handlePasswordChange(event.target.value);
+      },
+      onFocus: () => {
+        handlePasswordChange("");
+      }
     },
     {
       labelName: "Address",
       value: address,
       type: "text",
-      onChange: event=>{handleAddressChange(event.target.value)}
+      onChange: event => {
+        handleAddressChange(event.target.value);
+      },
+      onFocus: () => {
+        handleAddressChange("");
+      }
     },
     {
       labelName: "City",
       value: city,
       type: "text",
-      onChange: event=>{handleCityChange(event.target.value)}
+      onChange: event => {
+        handleCityChange(event.target.value);
+      },
+      onFocus: reset => {
+        handleCityChange(reset ? reset : "");
+      }
     },
     {
-      labelName: "phoneNumber",
+      labelName: "PhoneNumber",
       value: phoneNumber,
       type: "text",
-      onChange: event=>{handlePhoneNumberChange(event.target.value)}
+      onChange: event => {
+        handlePhoneNumberChange(event.target.value);
+      },
+      onFocus: () => {
+        handlePhoneNumberChange("");
+      }
     }
   ];
+  let oldDetails = [fullName, password, address, city, phoneNumber];
+
   const editMode = () => {
-  handleFullNameChange('')
-  handlePasswordChange('')
-  handleAddressChange('')
-  handleCityChange('')
-  handlePhoneNumberChange('')
-  setDisable(false)
+    setDisable(false);
   };
   const updateProfile = () => {
-    setDisable(true)
-    };
+    InputDivsInfo.map((objInput, i) =>
+      objInput.value === "" ? objInput.onFocus(oldDetails[i]) : ""
+    );
+
+    setDisable(true);
+  };
   return (
     <fieldset className="userDetail">
       <legend>User Details:</legend>
@@ -66,20 +92,25 @@ function UserDetail() {
         </button>
       </div>
       <form role="form">
-      {InputDivsInfo.map((objInput) => { return(
-        <div className="form-group">
-      <label className='input_label'>{objInput.labelName}: </label>
-      <input
-            value={objInput.value}
-            type={objInput.type}
-            onChange={objInput.onChange}
-            className="form-control"
-            placeholder={`Enter your new ${objInput.labelName}`}
-            disabled={disabled}
-          />
-        </div>       
-      )})}
-      {!disabled?<button onClick={() => updateProfile()}>Update</button>:''}
+        {InputDivsInfo.map(objInput => (
+          <div className="form-group">
+            <label className="input_label">{objInput.labelName}: </label>
+            <input
+              value={objInput.value}
+              type={objInput.type}
+              onChange={objInput.onChange}
+              onFocus={objInput.onFocus}
+              className="form-control"
+              placeholder={`Enter your new ${objInput.labelName}`}
+              disabled={disabled}
+            />
+          </div>
+        ))}
+        {!disabled ? (
+          <button onClick={() => updateProfile()}>Update</button>
+        ) : (
+          ""
+        )}
       </form>
     </fieldset>
   );
