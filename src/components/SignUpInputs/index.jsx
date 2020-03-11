@@ -1,151 +1,14 @@
-// import React, { useState } from 'react'
-// import './style.css'
-
-// const SignUpInputs = (props) => {
-//     const [username, setUsername] = useState('')
-//     const [password, setPassword] = useState('')
-//     const [fullName, setFullName] = useState('')
-//     const [address, setAddress] = useState('')
-//     const [city, setCity] = useState('')
-//     const [phoneNumber, setPhoneNumber] = useState('')
-//     return (
-//         <div className="SignUp">
-//             <div className="form-control">
-//                 <label className="input-key" htmlFor="username">Username</label>
-
-//                 <input
-//                     className="input-form"
-//                     type="text"
-//                     id="username"
-//                     label="Username"
-//                     value={username}
-//                     onChange={event => {
-//                         setUsername(event.target.value)
-//                     }}
-//                 />
-
-//             </div>
-//             <div className="form-control">
-//                 <label htmlFor="password">Password</label>
-
-//                 <input
-//                     className="input-form"
-//                     type="text"
-//                     id="password"
-//                     label="Password"
-//                     value={password}
-//                     onChange={event => {
-//                         setPassword(event.target.value)
-//                     }}
-//                 />
-
-//             </div>
-//             <div className="form-control">
-//                 <label htmlFor="fullName">Full name</label>
-
-//                 <input
-//                     className="input-form"
-//                     type="text"
-//                     id="fullName"
-//                     label="Full name"
-//                     value={fullName}
-//                     onChange={event => {
-//                         setFullName(event.target.value)
-//                     }}
-//                 />
-
-//             </div>
-//             <div className="form-control">
-//                 <label htmlFor="address">Address</label>
-//                 <input
-//                     className="input-form"
-//                     type="text"
-//                     id="address"
-//                     label="Adress"
-//                     value={address}
-//                     onChange={event => {
-//                         setAddress(event.target.value)
-//                     }}
-//                 />
-
-//             </div>
-
-//             <div className="form-control">
-//                 <label htmlFor="city">City</label>
-//                 <input
-//                     className="input-form"
-//                     type="text"
-//                     id="City"
-//                     label="City"
-//                     value={city}
-//                     onChange={event => {
-//                         setCity(event.target.value)
-//                     }}
-//                 />
-//             </div>
-//             <div className="form-control">
-//                 <label htmlFor="phoneNumber">Phone number</label>
-//                 <input
-//                     className="input-form"
-//                     type="number"
-//                     id="phoneNumber"
-//                     label="Phone number"
-//                     value={phoneNumber}
-//                     onChange={event => {
-//                         setPhoneNumber(event.target.value)
-//                     }}
-//                 />
-//             </div>
-//             <div>
-//                 <button type="submit" className="ingredient-form_actions" id="submit">Submit</button>
-//             </div>
-//         </div>
-//     )
-// }
-
-// export default SignUpInputs
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -170,9 +33,15 @@ const useStyles = makeStyles(theme => ({
 export default function SignUpInputs() {
   const classes = useStyles();
 
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [fullName, setFullName] = useState('')
+  const [address, setAddress] = useState('')
+  const [city, setCity] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -182,27 +51,20 @@ export default function SignUpInputs() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
                 autoComplete="fname"
-                name="firstName"
+                name="fullName"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="fullName"
+                label="Full Name"
+                value={fullName}
+                onChange={event => {
+                  setFullName(event.target.value)
+                }}
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -214,6 +76,10 @@ export default function SignUpInputs() {
                 label="Address"
                 name="address"
                 autoComplete="address"
+                value={address}
+                onChange={event => {
+                  setAddress(event.target.value)
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -225,6 +91,10 @@ export default function SignUpInputs() {
                 label="City"
                 name="city"
                 autoComplete="city"
+                value={city}
+                onChange={event => {
+                  setCity(event.target.value)
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -236,6 +106,10 @@ export default function SignUpInputs() {
                 label="Username"
                 name="username"
                 autoComplete="username"
+                value={username}
+                onChange={event => {
+                  setUsername(event.target.value)
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -247,6 +121,10 @@ export default function SignUpInputs() {
                 label="Phone Number"
                 name="phoneNumber"
                 autoComplete="phoneNumber"
+                value={phoneNumber}
+                onChange={event => {
+                  setPhoneNumber(event.target.value)
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -259,6 +137,10 @@ export default function SignUpInputs() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={event => {
+                  setPassword(event.target.value)
+                }}
               />
             </Grid>
           </Grid>
@@ -280,11 +162,7 @@ export default function SignUpInputs() {
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }
-// © 2020 GitHub, Inc.
 
