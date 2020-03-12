@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
@@ -107,8 +108,7 @@ function Login(props) {
             variant="outlined"
             onClick={() => handleListItemClick()}
             color="primary"
-          >
-            LOG IN
+          > <Link to="/OrgInfo">LOG IN</Link>
           </Button>
         </ListItem>
       </List>
@@ -128,8 +128,8 @@ function DialogInput() {
     <div>
       <form className={classes.btnPrimary}>
         <div>
-          <Button variant="contained" color="primary">
-            SIGN UP
+          <Button variant="contained" color="primary">      
+            <Link to="/SignUp">SIGN UP</Link>
           </Button>
         </div>
       </form>

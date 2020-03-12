@@ -37,7 +37,7 @@ export default function Chart({filterMonth}) {
         {filterMonth[1]}
       </Typography>
 
-      <ResponsiveContainer width={600} height={150}>
+      <ResponsiveContainer width={800} height={350}>
       <AreaChart data={data}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>

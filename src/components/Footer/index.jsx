@@ -1,12 +1,11 @@
-import React from 'react'
-import {DialogInput} from "../Dialog";
-
+import React from "react";
+import { DialogInput } from "../Dialog";
 function Footer() {
-    return (
-        <div>
-             <DialogInput />
-        </div>
-    )
+  return (
+    <div>
+      <DialogInput />
+    </div>
+  );
 }
 
-export default Footer
+export default Footer;

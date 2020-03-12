@@ -59,7 +59,7 @@ function UserDetail() {
     };
   return (
     <fieldset className="userDetail">
-      <legend>User Details:</legend>
+      <legend className='legendTitle'>User Details:</legend>
       <div className="legend2">
         <button
           type="button"
