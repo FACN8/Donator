@@ -19,7 +19,7 @@ function OrgCard() {
               style={{ backgroundColor: i === selectedIndex && bgColors[randomNumber(3)] }}
               onClick={event => cardClick(i)}
             >
-              <img src="./images/elBasma.jpg"></img>
+              <img alt='elBasma' src="./images/elBasma.jpg"></img>
               {i === selectedIndex ?
               <div className="org_card_content">
                 <h2>جمعيه البسمه</h2>

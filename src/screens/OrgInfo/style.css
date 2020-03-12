@@ -1,9 +1,7 @@
 * {
   box-sizing: border-box;
 }
-body,html{
-    background-color: #F0F0F0;
-}
+
 .orgMainDiv {
   width: 100vw;
   height: 100vh;

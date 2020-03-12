@@ -6,9 +6,13 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
-    background-image: url('../../images/landingPage.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.bgImg {
+    background-image: url('../../assets/landingPage.jpg');
+
 }
 
 .title {
@@ -25,3 +29,4 @@ header {
     align-items: center;
 
 }
+

@@ -1,5 +1,5 @@
 import React from "react";
-import DefaultHeader from "../../components/DefaultHeader";
+import HomeHeader from "../../components/HomeHeader";
 import Video from "../../components/Video";
 import Content from "../../components/Content";
 import Footer from "../../components/Footer";
@@ -7,7 +7,7 @@ import Footer from "../../components/Footer";
 function LandingPage() {
   return (
     <div>
-      <DefaultHeader />
+      <HomeHeader />
       <div>
         <Content />
       </div>

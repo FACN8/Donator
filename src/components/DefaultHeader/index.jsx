@@ -1,21 +1,12 @@
-import React from "react";
-import "./style.css";
-import Language from "../Languages";
-import {DialogLogIn}  from "../Dialog"
-import Logo from '../../assets/logo.png'
+import React from 'react'
+import NavCircle from '../NavCircle'
 
-function DefaultHeader() {
-  return (
-    <div>
-        <header>
-        <img alt='donatorLogo' src={Logo}/>
-      <div>
-        <Language />
-      </div>
-       <DialogLogIn />
-       </header>
-    </div>
-  );
+function DefaultHeader () {
+        return (
+            <div>
+                <NavCircle />
+            </div>
+        )
 }
 
-export default DefaultHeader;
+export default DefaultHeader
