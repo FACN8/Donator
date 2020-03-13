@@ -1,11 +1,12 @@
 import React from 'react'
 
-function index() {
+function UserStats() {
     return (
         <div>
+            <h1>statistics</h1>
             
         </div>
     )
 }
 
-export default index
+export default UserStats

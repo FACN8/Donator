@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import "./style.css";
 
-function index() {
-    return (
-        <div>
-            
-        </div>
-    )
-}
-
-export default index
+function OrgBubble() {
+  return(
+      <div className="scrollableDiv_bubble">
+        {[...Array(20)].map((_, i) => {
+          return (
+            <div
+              className='org_bubble'
+            >
+              <img src="./images/elBasma.jpg"></img>
+              </div>
+             )})}     
+  </div>)
+  }
+export default OrgBubble;

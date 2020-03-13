@@ -17,6 +17,7 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import './style.css'
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -173,18 +174,18 @@ function DialogInput() {
           </Button>
         </div>
       </form>
-      <form className={classes.btnBottom}>
-        <div>
+      <form className={`footer ${classes.btnBottom}`}>
+        <div className='footer-buttons'>
           <Button variant="outlined" color="primary">
             Contact Us
           </Button>
         </div>
-        <div>
+        <div className='footer-buttons'>
           <Button variant="outlined" color="primary">
             Who Are We
           </Button>
         </div>
-        <div>
+        <div className='footer-buttons'>
           <Button variant="outlined" color="primary">
             Our Goal
           </Button>

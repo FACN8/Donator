@@ -1,0 +1,29 @@
+fieldset {
+  position: relative;
+  width: 60vw;
+}
+.legend2 {
+  position: absolute;
+  top: -0.2em;
+  right: 20px;
+  background: #fff;
+  line-height: 1.2em;
+}
+.edit {
+  width: 69px;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 20px;
+  border: 0px;
+  background-color: rgba(236, 90, 62, 1);
+}
+.input_label{
+    font-size: 25px;
+}
+.form-control{
+    font-size: 18px;
+}
+legend{
+    font-size: 30px;
+
+}
