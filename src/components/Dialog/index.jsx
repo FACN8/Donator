@@ -11,15 +11,20 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 import './style.css'
 
 const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200
+    width: 200,
+    left: 50
   },
   btnPrimary: {
     marginBottom: 100,
@@ -33,8 +38,13 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-around"
   },
   margin: {
-    marginLeft: 8
-  }
+    marginLeft: 60
+  },
+  link: {
+   display: 'flex',
+   flexDirection: "row",
+   justifyContent: "space-around"
+  },
 }));
 
 function Login(props) {
@@ -43,7 +53,7 @@ function Login(props) {
   const [values, setValues] = React.useState({
     password: "",
     showPassword: false,
-    username: '',
+    username: ""
   });
 
   const handleChange = prop => event => {
@@ -64,42 +74,52 @@ function Login(props) {
 
   return (
     <Dialog aria-labelledby="dialog-title" open={open}>
-      <DialogTitle id="dialog-title" className="dialog">
+      <DialogTitle id="dialog-title">
         Welcome Back We've Missed You!
       </DialogTitle>
       <List>
         <ListItem>
-          <FormControl> 
-          <InputLabel className={classes.margin} htmlFor="standard-adornment-password">Email/Username</InputLabel>
-          <Input
-            className={classes.textField}
-            id="margin-none"
-            label="Email/Username"
-          />
+          <FormControl>
+            <InputLabel
+              className={classes.margin}
+              htmlFor="standard-adornment-password"
+            >
+              Email/Username
+            </InputLabel>
+            <Input
+              className={classes.textField}
+              id="margin-none"
+              label="Email/Username"
+            />
           </FormControl>
         </ListItem>
         <ListItem>
-        <FormControl>
-          <InputLabel className={classes.margin} htmlFor="standard-adornment-password">Password</InputLabel>
-          <Input
-            id="standard-adornment-password"
-            label="password"
-            className={classes.textField}
-            type={values.showPassword ? "text" : "password"}
-            value={values.password}
-            onChange={handleChange("password")}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
+          <FormControl>
+            <InputLabel
+              className={classes.margin}
+              htmlFor="standard-adornment-password"
+            >
+              Password
+            </InputLabel>
+            <Input
+              id="standard-adornment-password"
+              label="password"
+              className={classes.textField}
+              type={values.showPassword ? "text" : "password"}
+              value={values.password}
+              onChange={handleChange("password")}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
           </FormControl>
         </ListItem>
         <ListItem>
@@ -107,10 +127,31 @@ function Login(props) {
             variant="outlined"
             onClick={() => handleListItemClick()}
             color="primary"
+            className={classes.textField}
           >
             LOG IN
           </Button>
         </ListItem>
+        <ListItem>
+          <FormControlLabel 
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+        </ListItem>
+        <Grid container>
+          <Grid item xs>
+            <Link href="#" variant="body3" className={classes.link}>
+              Forgot password?
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link href="#" variant="body3" className={classes.link}>
+              {"Don't have an account?"}
+              <br/>
+              {"Sign up"}
+            </Link>
+          </Grid>
+        </Grid>
       </List>
     </Dialog>
   );
@@ -177,4 +218,4 @@ function DialogLogIn() {
   );
 }
 
-export { DialogLogIn, DialogInput};
+export { DialogLogIn, DialogInput };

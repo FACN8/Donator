@@ -11,6 +11,11 @@ body {
     background-size: cover;
 }
 
+.bgImg {
+    background-image: url('../../assets/landingPage.jpg');
+
+}
+
 .title {
     display: flex;
     flex-direction: column;
@@ -25,3 +30,4 @@ header {
     align-items: center;
 
 }
+
