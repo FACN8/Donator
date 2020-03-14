@@ -19,7 +19,7 @@ fieldset{
   position: absolute;
   top: -0.2em;
   right: 20px;
-  background: #fff;
+  background: transparent;
   line-height: 1.2em;
 }
 .edit {

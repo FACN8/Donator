@@ -1,25 +1,20 @@
-import React from 'react'
-import { Link } from "react-router-dom";
-
+import React from "react";
+import DropDown from "../../components/DonationDropDown";
+import DefaultHeader from "../../components/DefaultHeader";
+import DeliveryTime from "../../components/DeliveryTime";
+import DonationOther from "../../components/DonationOther"
 
 function DonationPage() {
-    return (
-        <div>
-             <nav>
-        <ul className="nav_row">
-          <li>
-            <Link to="/OrgInfo">Home</Link>
-          </li>
-          <li>
-            <Link to="/Profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/">LogOut</Link>
-          </li>
-        </ul>
-      </nav>
-        </div>
-    )
+  return (
+    <React.Fragment>
+    <DefaultHeader />
+    <div>
+      <DropDown />
+      <DeliveryTime />
+      <DonationOther />
+    </div>
+    </React.Fragment>
+  );
 }
 
-export default DonationPage
+export default DonationPage;

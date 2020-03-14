@@ -1,26 +1,19 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
-import UserDetail from '../../components/UserDetail'
-import UserStats from '../../components/UserStats'
-import './style.css'
+import UserDetail from "../../components/UserDetail";
+import UserStats from "../../components/UserStats";
+import DefaultHeader from "../../components/DefaultHeader";
+import "./style.css";
 function Profile() {
-    return (
-        <div className='profile'>
-        <ul className="nav_row">
-          <li>
-            <Link to="/OrgInfo">Home</Link>
-          </li>
-          <li>
-            <Link to="/Profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/">LogOut</Link>
-          </li>
-        </ul>
-            <UserDetail/>
-            <UserStats/>
-        </div>
-    )
+  return (
+    <React.Fragment>
+      <DefaultHeader />
+      <div className="profile">
+        <UserDetail />
+        <UserStats />
+      </div>
+    </React.Fragment>
+  );
 }
 
-export default Profile
+export default Profile;

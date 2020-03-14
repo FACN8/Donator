@@ -19,7 +19,6 @@ function App () {
           <Route path="/Profile" component={Profile}/>
           <Route path="/DonationPage" component={DonationPage}/>
           <Route path="/LogIn" component={DialogLogIn}/>
-
         </Switch>
       </Router>
       </React.Fragment>
