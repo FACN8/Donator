@@ -1,0 +1,13 @@
+.chart {
+  margin: 0 auto;
+  margin-top: 5vh;
+  width: fit-content;
+}
+
+@media screen and (max-width: 600px) {
+    .chart {
+        margin: 0 auto;
+        margin-top: 15vh;
+        width: fit-content;
+      }
+}

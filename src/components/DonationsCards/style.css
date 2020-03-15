@@ -1,0 +1,65 @@
+.cardsDiv {
+  display: flex;
+  flex-direction: row;
+  height: 150px;
+  width: 80%;
+  user-select: none;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  margin: 10px auto ;
+  border-radius: 25px;
+}
+.card {
+  padding: 10px;
+  background-color: rgba(233, 233, 233, 0.8);
+  margin: 20px;
+  text-align: center;
+  display: flex;
+  width: 30%;
+  min-width: 30%;
+  flex-direction: column;
+  height: 150px;
+  border-radius: 15px;
+}
+.donationTitle{
+  font-size: 28px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+.donationValue {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 22px;
+  text-align: center;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+@media screen and (max-width: 600px) {
+  .cardsDiv {
+    width: 100%;
+    height: 100px;
+  }
+  .card {
+    width: 50%;
+    height: 100px;
+    flex-direction: column;
+  }
+  .donationTitle{
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+  }
+  .donationValue {
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    font-size: 14px;
+
+  }
+}

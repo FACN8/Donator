@@ -2,11 +2,21 @@
   box-sizing: border-box;
 }
 .orgMainDiv {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   text-align: center;
   background-image: url("https://cdn.dribbble.com/users/1090020/screenshots/7210751/media/ac663fb32960d2450217914bcce25dc9.png");
-  background-position: end bottom;
+  background-attachment: fixed;
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+.nav_row{
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0 auto;
+}
+.nav_row li{
+ padding: 15px;
 }

@@ -1,12 +1,25 @@
-fieldset {
+.userDetail {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+  padding: 10px;
   position: relative;
-  width: 60vw;
+  left: auto;
+  width: 70vw;
+  justify-items: center;
+}
+fieldset{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-inline-start: 0px;
+  margin-inline-end: 0;
 }
 .legend2 {
   position: absolute;
   top: -0.2em;
   right: 20px;
-  background: #fff;
+  background: transparent;
   line-height: 1.2em;
 }
 .edit {
@@ -17,13 +30,28 @@ fieldset {
   border: 0px;
   background-color: rgba(236, 90, 62, 1);
 }
-.input_label{
-    font-size: 25px;
+.input_label {
+  font-size: 25px;
 }
-.form-control{
-    font-size: 18px;
+.form-control {
+  margin-top: 20px;
+  font-size: 18px;
 }
-legend{
-    font-size: 30px;
+.legendTitle {
+  font-size: 40px;
+}
 
+@media screen and (max-width: 600px) {
+  .userDetail {
+    width: 95vw;
+  }
+  .input_label {
+    font-size: 400px;
+  }
+  .form-control {
+    font-size: 26px;
+  }
+  .legendTitle {
+    font-size: 40px;
+  }
 }

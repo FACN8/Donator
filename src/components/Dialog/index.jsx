@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
@@ -13,11 +14,10 @@ import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import './style.css'
+import "./style.css";
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -41,10 +41,10 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 60
   },
   link: {
-   display: 'flex',
-   flexDirection: "row",
-   justifyContent: "space-around"
-  },
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around"
+  }
 }));
 
 function Login(props) {
@@ -129,11 +129,11 @@ function Login(props) {
             color="primary"
             className={classes.textField}
           >
-            LOG IN
+            <Link to="/OrgInfo">LOG IN</Link>
           </Button>
         </ListItem>
         <ListItem>
-          <FormControlLabel 
+          <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
@@ -147,7 +147,7 @@ function Login(props) {
           <Grid item>
             <Link href="#" variant="body3" className={classes.link}>
               {"Don't have an account?"}
-              <br/>
+              <br />
               {"Sign up"}
             </Link>
           </Grid>
@@ -170,22 +170,22 @@ function DialogInput() {
       <form className={classes.btnPrimary}>
         <div>
           <Button variant="contained" color="primary">
-            SIGN UP
+            <Link to="/SignUp">SIGN UP</Link>
           </Button>
         </div>
       </form>
       <form className={`footer ${classes.btnBottom}`}>
-        <div className='footer-buttons'>
+        <div className="footer-buttons">
           <Button variant="outlined" color="primary">
             Contact Us
           </Button>
         </div>
-        <div className='footer-buttons'>
+        <div className="footer-buttons">
           <Button variant="outlined" color="primary">
             Who Are We
           </Button>
         </div>
-        <div className='footer-buttons'>
+        <div className="footer-buttons">
           <Button variant="outlined" color="primary">
             Our Goal
           </Button>

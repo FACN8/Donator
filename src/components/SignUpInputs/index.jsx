@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -49,7 +49,7 @@ export default function SignUpInputs() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} action="/OrgInfo">
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -150,12 +150,12 @@ export default function SignUpInputs() {
             variant="contained"
             color="primary"
             className={classes.submit}
-          >
-            Sign Up
+          >   
+           <Link to="/OrgInfo">Sign Up</Link>
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to="/LogIn" >
                 Already have an account? Sign in
               </Link>
             </Grid>

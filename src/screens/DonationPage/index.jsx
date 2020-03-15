@@ -1,17 +1,19 @@
 import React from "react";
 import DropDown from "../../components/DonationDropDown";
-import NavCircle from "../../components/NavCircle";
+import DefaultHeader from "../../components/DefaultHeader";
 import DeliveryTime from "../../components/DeliveryTime";
 import DonationOther from "../../components/DonationOther"
 
 function DonationPage() {
   return (
+    <React.Fragment>
+    <DefaultHeader />
     <div>
-      <NavCircle />
       <DropDown />
       <DeliveryTime />
       <DonationOther />
     </div>
+    </React.Fragment>
   );
 }
 
