@@ -6,9 +6,9 @@ export class Video extends Component {
     render() {
         return (
                 
-            <div className="video">
+            <div>
             <center>   
-                  <Player url="https://www.youtube.com/watch?v=Odg1BIfq60E" autoPlay muted />
+                  <Player width= "90%" url="https://www.youtube.com/watch?v=Odg1BIfq60E" autoPlay muted />
                 </center>
             </div>
         )

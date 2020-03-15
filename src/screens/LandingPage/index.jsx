@@ -8,8 +8,9 @@ import './style.css'
 
 function LandingPage() {
   return (
-    <div>
-      <HomeHeader />
+    <div className="landingPageStyle">
+     <center>
+        <HomeHeader />
       <div>
         <Content />
       </div>
@@ -20,6 +21,7 @@ function LandingPage() {
       <h2 className='organizations'>Organizations We Work With</h2>
       <OrgBubble/>
       <Footer />
+      </center>
     </div>
   );
 }
