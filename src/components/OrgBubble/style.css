@@ -29,7 +29,11 @@
   .scrollableDiv_bubble {
     overflow: scroll;
     height: 20vh;
-    width: 80%;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap
   }
   .org_bubble {
     justify-content: center;
