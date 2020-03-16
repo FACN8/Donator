@@ -20,6 +20,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import "./style.css";
 import { postRequest } from "../../utils/axios.js";
 import Cookie from "js-cookie";
+import ErrorMessage from "../../components/ErrorMessage";
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -45,7 +47,17 @@ const useStyles = makeStyles(theme => ({
   link: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "flex-end",
+    marginLeft: 200
+  },
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  close: {
+    cursor: "pointer",
+    marginLeft: 15
   }
 }));
 
@@ -104,8 +116,9 @@ function Login(props) {
 
   return (
     <Dialog aria-labelledby="dialog-title" open={open}>
-      <DialogTitle id="dialog-title">
+      <DialogTitle className={classes.header} id="dialog-title">
         Welcome Back We've Missed You!
+        <CloseIcon className={classes.close} onClick={() => handleListItemClick()}></CloseIcon>
       </DialogTitle>
       <List>
         <form onSubmit={handelSubmit}>
@@ -161,14 +174,13 @@ function Login(props) {
             <Button
               type="submit"
               variant="outlined"
-              // onClick={() => handleListItemClick()}
               color="primary"
               className={classes.textField}
             >
               LOG IN
             </Button>
           </ListItem>
-          {errorMsg ? <h3>{errorMsg}</h3> : ""}
+          {errorMsg ? <ErrorMessage message={errorMsg} /> : ""}
         </form>
         <ListItem>
           <FormControlLabel
@@ -177,13 +189,8 @@ function Login(props) {
           />
         </ListItem>
         <Grid container>
-          <Grid item xs>
-            <Link href="#" variant="body3" className={classes.link}>
-              Forgot password?
-            </Link>
-          </Grid>
           <Grid item>
-            <Link href="#" variant="body3" className={classes.link}>
+            <Link to="/SignUp" variant="body3" className={classes.link}>
               {"Don't have an account?"}
               <br />
               {"Sign up"}

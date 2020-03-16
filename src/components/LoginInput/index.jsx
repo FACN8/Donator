@@ -9,7 +9,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { postRequest } from "../../utils/axios.js";
-import Cookie from "js-cookie";
 import ErrorMessage from "../../components/ErrorMessage";
 
 const useStyles = makeStyles(theme => ({
@@ -32,48 +31,35 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignUpInputs() {
+
+export default function LogInInputs() {
   const classes = useStyles();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   const handelReset = () => {
-    setUsername("");
-    setPassword("");
-    setFullName("");
-    setAddress("");
-    setCity("");
-    setPhoneNumber("");
+  setUsername("");
+  setPassword("");
   };
+  
   const handelSubmit = event => {
     event.preventDefault();
-    postRequest("/addUser", {
+    postRequest("/authenticate", {
       username,
-      password,
-      fullName,
-      address,
-      city,
-      phoneNumber
+      password
     })
-      .then(res =>
-        res.data.error
-          ? (() => {
-              setErrorMsg(res.data.error);
-              handelReset();
-            })()
-          : (() => {
-              window.location = res.data.redirect;
-              Cookie.set("token", res.data.token);
-            })()
-      )
-      .catch(err => console.log("error: ", err));
-  };
+  .then(res =>
+    res.data.error
+    ? (() => {
+    setErrorMsg(res.data.error);
+    handelReset();
+    })()
+    : (window.location = res.data.redirect)
+    )
+    .catch(err => console.log("error: ", err));
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -82,83 +68,22 @@ export default function SignUpInputs() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Sign In
         </Typography>
         <form className={classes.form} onSubmit={handelSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="fname"
-                name="fullName"
-                variant="outlined"
-                required
-                fullWidth
-                id="fullName"
-                label="Full Name"
-                value={fullName}
-                onChange={event => {
-                  setFullName(event.target.value);
-                }}
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="address"
-                label="Address"
-                name="address"
-                autoComplete="address"
-                value={address}
-                onChange={event => {
-                  setAddress(event.target.value);
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="city"
-                label="City"
-                name="city"
-                autoComplete="city"
-                value={city}
-                onChange={event => {
-                  setCity(event.target.value);
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="phoneNumber"
-                label="Username"
-                name="username"
-                autoComplete="username"
-                value={username}
-                onChange={event => {
-                  setUsername(event.target.value);
-                }}
-              />
-            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
                 id="username"
-                label="Phone Number"
-                name="phoneNumber"
-                autoComplete="phoneNumber"
-                value={phoneNumber}
+                label="Username"
+                name="username"
+                autoComplete="username"
+                value={username}
                 onChange={event => {
-                  setPhoneNumber(event.target.value);
+                  setUsername(event.target.value);
                 }}
               />
             </Grid>
@@ -186,12 +111,12 @@ export default function SignUpInputs() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+              LOG IN
           </Button>
           {errorMsg ? <ErrorMessage message= {errorMsg}/> : "" }
           <Grid container justify="flex-end">
             <Grid item>
-              <Link to="/LogIn">Already have an account? Sign in</Link>
+              <Link to="/SignUp">Don't have an account? Sign Up</Link>
             </Grid>
           </Grid>
         </form>
