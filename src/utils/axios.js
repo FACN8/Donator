@@ -9,9 +9,11 @@ const checkResponse = response => {
   return response;
 };
 
-export const getRequest = path => {
+export const getRequest = (path,token) => {
   return axios
-    .get(API_BASE + path)
+    .get(API_BASE + path,{
+        headers: { Authorization: token?"ZoIiwiY" + token:'no accesses' }
+    })
     .then(checkResponse)
     .catch(err => {
       throw new Error(`fetch getUserData failed ${err}`);

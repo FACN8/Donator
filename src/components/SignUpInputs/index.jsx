@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { postRequest } from "../../utils/axios.js";
+import Cookie from "js-cookie";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -62,10 +63,13 @@ export default function SignUpInputs() {
       .then(res =>
         res.data.error
           ? (() => {
-            setErrorMsg(res.data.error);
-            handelReset();
+              setErrorMsg(res.data.error);
+              handelReset();
             })()
-          : (window.location = res.data.redirect)
+          : (() => {
+              window.location = res.data.redirect;
+              Cookie.set("token", res.data.token);
+            })()
       )
       .catch(err => console.log("error: ", err));
   };
