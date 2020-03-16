@@ -188,7 +188,7 @@ export default function SignUpInputs() {
           >
             Sign Up
           </Button>
-          {errorMsg ? <ErrorMessage message={errorMsg} /> : ""}
+          {errorMsg ? <ErrorMessage message= {errorMsg}/> : "" }
           <Grid container justify="flex-end">
             <Grid item>
               <Link to="/LogIn">Already have an account? Sign in</Link>
