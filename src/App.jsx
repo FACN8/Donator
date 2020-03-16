@@ -3,10 +3,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
-import {LandingPage, OrgInfo, Profile, SignUp, DonationPage} from './screens'
-import {DialogLogIn}  from "./components/Dialog"
+import {LandingPage, OrgInfo, Profile, SignUp, DonationPage, Login} from './screens'
 
 function App () {
     return (
@@ -18,7 +16,7 @@ function App () {
           <Route path="/OrgInfo" component={OrgInfo}/>
           <Route path="/Profile" component={Profile}/>
           <Route path="/DonationPage" component={DonationPage}/>
-          <Route path="/LogIn" component={DialogLogIn}/>
+          <Route path="/LogIn" component={Login}/>
         </Switch>
       </Router>
       </React.Fragment>
