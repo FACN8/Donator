@@ -69,7 +69,7 @@ export default function SignUpInputs() {
             })()
           : (() => {
               window.location = res.data.redirect;
-              Cookie.set("token", res.data.token);
+              Cookie.set("token", res.data.token, { expires: 1 });
             })()
       )
       .catch(err => console.log("error: ", err));
