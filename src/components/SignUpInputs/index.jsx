@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -8,7 +8,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import {postRequest} from "../../utils/axios.js";
+import { postRequest } from "../../utils/axios.js";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -39,10 +39,35 @@ export default function SignUpInputs() {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
+  const handelReset = () => {
+    setUsername("");
+    setPassword("");
+    setFullName("");
+    setAddress("");
+    setCity("");
+    setPhoneNumber("");
+  };
   const handelSubmit = event => {
     event.preventDefault();
-    postRequest('/test',{username,password,fullName,address,city,phoneNumber})
+    postRequest("/addUser", {
+      username,
+      password,
+      fullName,
+      address,
+      city,
+      phoneNumber
+    })
+      .then(res =>
+        res.data.error
+          ? (() => {
+            setErrorMsg(res.data.error);
+            handelReset();
+            })()
+          : (window.location = res.data.redirect)
+      )
+      .catch(err => console.log("error: ", err));
   };
 
   return (
@@ -156,8 +181,9 @@ export default function SignUpInputs() {
             color="primary"
             className={classes.submit}
           >
-            {/* <Link to="/OrgInfo">Sign Up</Link>   */}
+            Sign Up
           </Button>
+          {errorMsg ? <h3>{errorMsg}</h3> : ""}
           <Grid container justify="flex-end">
             <Grid item>
               <Link to="/LogIn">Already have an account? Sign in</Link>
