@@ -9,14 +9,14 @@ const checkResponse = response => {
   return response;
 };
 
-export const getRequest = (path,token) => {
+export const getRequest = (path, token) => {
   return axios
-    .get(API_BASE + path,{
-        headers: { Authorization: token?"ZoIiwiY" + token:'no accesses' }
+    .get(API_BASE + path, {
+      headers: { Authorization: token ? token : "no accesses" }
     })
     .then(checkResponse)
     .catch(err => {
-      throw new Error(`fetch getUserData failed ${err}`);
+      throw new Error(`fetch getRequest failed ${err}`);
     });
 };
 export const postRequest = (path, body) => {
@@ -26,6 +26,6 @@ export const postRequest = (path, body) => {
     })
     .then(checkResponse)
     .catch(err => {
-      throw new Error(`fetch getUserData failed ${err}`);
+      throw new Error(`fetch postRequest failed ${err}`);
     });
 };
