@@ -22,14 +22,7 @@ fieldset{
   background: transparent;
   line-height: 1.2em;
 }
-.edit {
-  width: 69px;
-  height: 30px;
-  font-size: 20px;
-  border-radius: 20px;
-  border: 0px;
-  background-color: rgba(236, 90, 62, 1);
-}
+
 .input_label {
   font-size: 25px;
 }
@@ -43,13 +36,10 @@ fieldset{
 
 @media screen and (max-width: 600px) {
   .userDetail {
-    width: 95vw;
-  }
-  .input_label {
-    font-size: 400px;
+    width: 90vw;
   }
   .form-control {
-    font-size: 26px;
+    font-size: 45px;
   }
   .legendTitle {
     font-size: 40px;
