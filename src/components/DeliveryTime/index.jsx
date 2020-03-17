@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import "./style.css"
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -39,7 +40,8 @@ function DeliveryTime() {
         <br/>
         <h3>Please Choose a Time:</h3>
         <FormControl className={classes.formControl}>
-          <NativeSelect
+          <div className="timeSelect">
+          <NativeSelect>
             className={classes.selectEmpty}
             value={state.time}
             name="time"
@@ -52,6 +54,7 @@ function DeliveryTime() {
             <option value={20}>14:00 - 18:00</option>
             <option value={30}>Other</option>
           </NativeSelect>
+          </div>
           <FormHelperText>Choose a Time</FormHelperText>
         </FormControl>
       </div>
