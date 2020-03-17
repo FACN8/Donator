@@ -1,16 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import Cookie from "js-cookie";
+import { getRequest } from "../../utils/axios.js";
+
 function OrgCard() {
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const token = Cookie.get("token") ? Cookie.get("token") : null;
+
+  React.useEffect(() => {
+    fetchOrgInfo()
+  }, [token]);
+
   let bgColors = [
     "rgba(105, 196, 105, 1)",
     "rgba(247, 211, 68, 1)",
     "rgba(122, 189, 244, 1)"
   ];
+
   const randomNumber = range => Math.floor(Math.random() * range);
+
   const cardClick = index =>
     setSelectedIndex(index === selectedIndex ? null : index);
+
+  const fetchOrgInfo = () => {
+    getRequest("/orgInfo", token)
+      .then(res => {
+       res.data.error
+          ? (() => {
+            window.location ='/';
+            })()
+          : (() => {
+             console.log(res.data.orgInfo)
+            })()
+      })
+      .catch(err => console.log("error: ", err));
+  };
+
   return (
     <div>
       <div className="scrollableDiv">

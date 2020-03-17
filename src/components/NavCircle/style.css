@@ -2,7 +2,7 @@ body {
   background-color: #EDEDED;
 }
 .circular-menu {
-  position: fixed;
+  position: absolute;
   top: 0em;
   right: 0em;
   transform: rotate(250deg);

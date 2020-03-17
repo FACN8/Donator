@@ -19,6 +19,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import "./style.css";
 import { postRequest } from "../../utils/axios.js";
+import Cookie from "js-cookie";
 import ErrorMessage from "../../components/ErrorMessage";
 import CloseIcon from "@material-ui/icons/Close";
 
@@ -105,7 +106,10 @@ function Login(props) {
               setErrorMsg(res.data.error);
               handelReset();
             })()
-          : (window.location = res.data.redirect)
+          : (()=>{
+            window.location = res.data.redirect;
+            Cookie.set("token", res.data.token, { expires: 1 });
+          })()
       )
       .catch(err => console.log("error: ", err));
   };
