@@ -5,8 +5,11 @@ import Content from "../../components/Content";
 import Footer from "../../components/Footer";
 import OrgBubble from "../../components/OrgBubble";
 import './style.css'
+import Cookie from "js-cookie";
+
 
 function LandingPage() {
+  Cookie.set("token", 'no access', { expires: 1 });
   return (
     <div className="landingPageStyle">
      <center>
