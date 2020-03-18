@@ -1,8 +1,6 @@
 import React from "react";
-import DropDown from "../../components/DonationDropDown";
 import DefaultHeader from "../../components/DefaultHeader";
-import DeliveryTime from "../../components/DeliveryTime";
-import DonationOther from "../../components/DonationOther"
+import StepperDonation from "../../components/StepperDonation"
 import './style.css'
 
 function DonationPage() {
@@ -12,9 +10,7 @@ function DonationPage() {
       <DefaultHeader />
       <div>
         <center>
-          <DropDown />
-          <DeliveryTime />
-          <DonationOther />
+        <StepperDonation/>
         </center>
       </div>
     </React.Fragment>

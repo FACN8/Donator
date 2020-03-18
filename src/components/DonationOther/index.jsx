@@ -10,17 +10,18 @@ const useStyles = makeStyles(theme => ({
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
       width: 300,
-      top: 200
+      top: 100
     }
   },
   button: {
-    top: 215,
+    top: 115,
   }
 }));
 
 function DonationOther() {
   const classes = useStyles();
-  const [value, setValue] = React.useState("Controlled");
+  const [value, setValue] = React.useState("");
+
   const handleChange = event => {
     setValue(event.target.value);
   };
@@ -34,12 +35,13 @@ function DonationOther() {
       <form className={classes.root} noValidate autoComplete="off">
         <TextField
           id="outlined-multiline-flexible"
-          label="Multiline"
+          label="Other"
           multiline
           rowsMax="8"
           value={value}
           onChange={handleChange}
           variant="outlined"
+          placeholder="Please Specify Donation"
         />
 
         <Button
