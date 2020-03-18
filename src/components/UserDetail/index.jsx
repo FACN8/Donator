@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./style.css";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
+import Cookie from "js-cookie";
+import { getRequest, postRequest } from "../../utils/axios.js";
 
 const useStyles = makeStyles(theme => ({
   root: {
-      width: '100%'
+    width: "100%"
   },
   inputRoot: {
     fontSize: 20,
@@ -15,86 +17,119 @@ const useStyles = makeStyles(theme => ({
   labelRoot: {
     fontSize: 30,
     marginTop: -10,
-    color: "red",
+    color: "red"
   }
 }));
 
-
 function UserDetail() {
   const classes = useStyles();
+  const token = Cookie.get("token") ? Cookie.get("token") : null;
+  const [userInfo, setUserInfo] = useState({
+    full_name: "",
+    password: "",
+    address: "",
+    city: "",
+    phone_number: ""
+  });
+  React.useEffect(() => {
+    fetchUserInfo();
+  }, [token]);
+ const [disabled, setDisable] = useState(true);
 
-  const [fullName, handleFullNameChange] = useState("Francis Aboud");
-  const [password, handlePasswordChange] = useState("123321");
-  const [address, handleAddressChange] = useState("shekon hpoalem");
-  const [city, handleCityChange] = useState("nazareth");
-  const [phoneNumber, handlePhoneNumberChange] = useState("0549763352");
-  const [disabled, setDisable] = useState(true);
+
   let InputDivsInfo = [
     {
       labelName: "Full Name",
-      value: fullName,
+      value: userInfo.full_name,
       type: "text",
       onChange: event => {
-        handleFullNameChange(event.target.value);
+        setUserInfo({...userInfo,full_name:event.target.value})
       },
       onFocus: (_, reset) => {
-        handleFullNameChange(reset ? reset : "");
+        setUserInfo({...userInfo,full_name:reset ? reset : ""})
       }
     },
     {
       labelName: "Password",
-      value: password,
+      value: userInfo.password.substring(0, 8),
       type: "password",
       onChange: event => {
-        handlePasswordChange(event.target.value);
+        setUserInfo({...userInfo,password:event.target.value})
       },
       onFocus: (_, reset) => {
-        handlePasswordChange(reset ? reset : "");
+        setUserInfo({...userInfo,password:reset ? reset : ""})
       }
     },
     {
       labelName: "Address",
-      value: address,
+      value: userInfo.address,
       type: "text",
       onChange: event => {
-        handleAddressChange(event.target.value);
+        setUserInfo({...userInfo,address:event.target.value})
       },
       onFocus: (_, reset) => {
-        handleAddressChange(reset ? reset : "");
+        setUserInfo({...userInfo,address:reset ? reset : ""})
       }
     },
     {
       labelName: "City",
-      value: city,
+      value: userInfo.city,
       type: "text",
       onChange: event => {
-        handleCityChange(event.target.value);
+        setUserInfo({...userInfo,city:event.target.value})
       },
       onFocus: (_, reset) => {
-        handleCityChange(reset ? reset : "");
+        setUserInfo({...userInfo,city:reset ? reset : ""})
       }
     },
     {
       labelName: "PhoneNumber",
-      value: phoneNumber,
+      value: userInfo.phone_number,
       type: "text",
       onChange: event => {
-        handlePhoneNumberChange(event.target.value);
+        setUserInfo({...userInfo,phone_number:event.target.value})
       },
       onFocus: (_, reset) => {
-        handlePhoneNumberChange(reset ? reset : "");
+        setUserInfo({...userInfo,phone_number:reset ? reset : ""})
       }
     }
   ];
-  const oldDetails = [fullName, password, address, city, phoneNumber];
 
+  const fetchUserInfo = () => {
+    getRequest("/userInfo", token)
+      .then(res => {
+        res.data.error
+          ? (() => {
+              window.location = "/";
+            })()
+          : (() => {
+              setUserInfo(res.data.userInfo);
+            })();
+      })
+      .catch(err => console.log("error: ", err));
+  };
   const editMode = () => {
     setDisable(false);
   };
   const updateProfile = () => {
-    InputDivsInfo.map((objInput, i) =>
-      objInput.value === "" ? objInput.onFocus(null, oldDetails[i]) : ""
-    );
+    postRequest(
+      "/updateUser",
+      {
+        ...userInfo
+      },
+      token
+    )
+      .then(res =>
+        res.data.error
+          ? (() => {
+              // setErrorMsg(res.data.error);
+            })()
+          : (() => {
+              // setErrorMsg(res.data.message);
+            })()
+      )
+      .catch(err => console.log("error: ", err));
+
     setDisable(true);
   };
   return (
@@ -119,7 +154,7 @@ function UserDetail() {
               InputProps={{ classes: { root: classes.inputRoot } }}
               InputLabelProps={{
                 classes: {
-                  root: classes.labelRoot,
+                  root: classes.labelRoot
                 }
               }}
               label={objInput.labelName}

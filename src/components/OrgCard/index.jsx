@@ -7,6 +7,7 @@ import { getRequest } from "../../utils/axios.js";
 function OrgCard() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const token = Cookie.get("token") ? Cookie.get("token") : null;
+  const [orgInfo, setOrgInfo] = useState([]);
 
   React.useEffect(() => {
     fetchOrgInfo()
@@ -31,18 +32,17 @@ function OrgCard() {
             window.location ='/';
             })()
           : (() => {
-             console.log(res.data.orgInfo)
+            setOrgInfo(res.data.orgInfo)
             })()
       })
       .catch(err => console.log("error: ", err));
   };
-
   return (
     <div>
       <div className="scrollableDiv">
-        {[...Array(10)].map((_, i) => {
+        {orgInfo.map((org, i) => {
           return (
-            <div
+            <div key={i}
               className={`org_card ${i === selectedIndex ? "expanded" : ""}`}
               style={{
                 backgroundColor:
@@ -50,25 +50,24 @@ function OrgCard() {
               }}
               onClick={event => cardClick(i)}
             >
-              <img alt="elBasma" src="./images/elBasma.jpg"></img>
+              <img alt={org.name} src={org.img_url}></img>
               {i === selectedIndex ? (
                 <div className="org_card_content">
-                  <h2>جمعيه البسمه</h2>
+                  <h2>{org.name}</h2>
                   <ul className="content">
                     <li>
-                      <b>Phone number: </b>0546215421
+                      <b>Phone number: </b>{org.phone_number}
                     </li>
                     <li>
                       <b>Address: </b>
-                      <address>nazareth,shekon hpoalem 54st</address>
+                      <address>{org.address}</address>
                     </li>
                     <li>
-                      <b>Description: </b>al basma orginazation that help the
-                      poor people and collect donation to provide for them
+                      <b>Description: </b>{org.info}
                     </li>
                   </ul>
                   <button>
-                    <a href="https://www.facebook.com/%D8%AC%D9%85%D8%B9%D9%8A%D8%A9-%D8%A7%D9%84%D8%A8%D8%B3%D9%85%D8%A9-%D8%A7%D9%84%D9%86%D8%A7%D8%B5%D8%B1%D8%A9-411911428821578">
+                    <a href={org.fb_url}>
                       More info..
                     </a>
                   </button>
