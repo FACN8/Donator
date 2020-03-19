@@ -1,11 +1,13 @@
 import React from "react";
 import "./style.css";
-import Dashboard from "../../components/Dashboard"
+import Dashboard from "../../components/Dashboard";
+import NavCircle from "../../components/NavCircle";
 
 function Profile() {
   return (
     <div>
-    <Dashboard/>
+      <NavCircle />
+      <Dashboard />
     </div>
   );
 }

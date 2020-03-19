@@ -19,7 +19,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { postRequest } from "../../utils/axios.js";
 import Cookie from "js-cookie";
-import ErrorMessage from "../../components/ErrorMessage";
+import Message from "../../components/Message";
 import CloseIcon from "@material-ui/icons/Close";
 import Collapse from '@material-ui/core/Collapse';
 import ContactUs from "../ContactUs";
@@ -114,10 +114,10 @@ function Login(props) {
       .then(res =>
         res.data.error
           ? (() => {
-              setErrorMsg(res.data.error);
-              handelReset();
-            })()
-          : (()=>{
+            setErrorMsg(res.data.error);
+            handelReset();
+          })()
+          : (() => {
             window.location = res.data.redirect;
             Cookie.set("token", res.data.token, { expires: 1 });
           })()
@@ -191,7 +191,7 @@ function Login(props) {
               LOG IN
             </Button>
           </ListItem>
-          {errorMsg ? <ErrorMessage message={errorMsg} /> : ""}
+          <Message message={errorMsg} severity={'error'}/>
         </form>
         <ListItem>
           <FormControlLabel
@@ -220,9 +220,17 @@ Login.propTypes = {
 
 function DialogInput() {
   const classes = useStyles();
+<<<<<<< HEAD
   const [open, setOpen] = useState(false);
   const [whoOpen, setWhoOpen] = useState(false);
   const [goalOpen, setGoalOpen] = useState(false);
+=======
+  const [showContact, setShowContact] = React.useState(false);
+  const [whoAreWe, setWhoAreWE] = React.useState(false);
+  const [ourGoal, setOurGoal] = React.useState(false);
+
+
+>>>>>>> origin
 
   return (
     <div>
@@ -235,6 +243,7 @@ function DialogInput() {
       </form>
       <form className={classes.btnBottom}>
         <div className="footer-buttons">
+<<<<<<< HEAD
           <Button 
           onClick={() => setOpen(!open)}
           aria-controls="collapse-text"
@@ -277,6 +286,37 @@ function DialogInput() {
               and more flexible without the hassle of worrying about finding
               an organization or getting to one. </p>
         </Collapse> : "" }
+=======
+
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => setShowContact(oldShowContact => !oldShowContact)}
+          >
+            Contact Us
+          </Button>
+          {showContact && <div>Contact us by Email:  Donations_Organization_haifa@gmail.com</div>}
+        </div>
+        <div className="footer-buttons">
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => setWhoAreWE(oldWhoAreWe => !oldWhoAreWe)}
+          >
+            Who Are We
+          </Button>
+          {whoAreWe && <div>We are a a nonprofit organization that works with several faithful charitable organizations.  </div>}
+        </div>
+        <div className="footer-buttons">
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={()=>setOurGoal(oldOurGoal => !oldOurGoal)}
+            >
+            Our Goal
+          </Button>
+          {ourGoal && <div>Our goal is to make it easy for you to donate with things you don't need anymore in an easy way so that we all make the world better, share donations, share love :)</div>}
+>>>>>>> origin
         </div>
       </form>
     </div>
