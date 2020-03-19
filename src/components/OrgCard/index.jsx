@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import Cookie from "js-cookie";
 import { getRequest } from "../../utils/axios.js";
+import Message from "../Message";
 
 function OrgCard() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const token = Cookie.get("token") ? Cookie.get("token") : null;
   const [orgInfo, setOrgInfo] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
 
   React.useEffect(() => {
-    fetchOrgInfo()
+    fetchOrgInfo();
   }, [token]);
 
   let bgColors = [
@@ -27,22 +29,19 @@ function OrgCard() {
   const fetchOrgInfo = () => {
     getRequest("/orgInfo", token)
       .then(res => {
-       res.data.error
-          ? (() => {
-            window.location ='/';
-            })()
-          : (() => {
-            setOrgInfo(res.data.orgInfo)
-            })()
+        res.data.error ? (window.location = "/") : setOrgInfo(res.data.orgInfo);
       })
-      .catch(err => console.log("error: ", err));
+      .catch(err => setErrorMsg(err));
   };
   return (
     <div>
       <div className="scrollableDiv">
-        {orgInfo.map((org, i) => {
-          return (
-            <div key={i}
+        {errorMsg ? (
+        <Message message={errorMsg} severity={'error'}/>
+        ) : (
+          orgInfo.map((org, i) => (
+            <div
+              key={i}
               className={`org_card ${i === selectedIndex ? "expanded" : ""}`}
               style={{
                 backgroundColor:
@@ -56,28 +55,28 @@ function OrgCard() {
                   <h2>{org.name}</h2>
                   <ul className="content">
                     <li>
-                      <b>Phone number: </b>{org.phone_number}
+                      <b>Phone number: </b>
+                      {org.phone_number}
                     </li>
                     <li>
                       <b>Address: </b>
                       <address>{org.address}</address>
                     </li>
                     <li>
-                      <b>Description: </b>{org.info}
+                      <b>Description: </b>
+                      {org.info}
                     </li>
                   </ul>
                   <button>
-                    <a href={org.fb_url}>
-                      More info..
-                    </a>
+                    <a href={org.fb_url}>More info..</a>
                   </button>
                 </div>
               ) : (
                 <div className="org_card_content" />
               )}
             </div>
-          );
-        })}
+          ))
+        )}
       </div>
       <button className="DonateButton">
         <Link to="/DonationPage">Donate Now</Link>

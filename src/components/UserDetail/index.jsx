@@ -5,6 +5,7 @@ import "./style.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Cookie from "js-cookie";
 import { getRequest, postRequest } from "../../utils/axios.js";
+import Message from "../Message";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,6 +25,8 @@ const useStyles = makeStyles(theme => ({
 function UserDetail() {
   const classes = useStyles();
   const token = Cookie.get("token") ? Cookie.get("token") : null;
+  const [errorMsg, setErrorMsg] = useState("");
+  const [updateMsg, setUpdateMsg] = useState("");
   const [userInfo, setUserInfo] = useState({
     full_name: "",
     password: "",
@@ -34,8 +37,7 @@ function UserDetail() {
   React.useEffect(() => {
     fetchUserInfo();
   }, [token]);
- const [disabled, setDisable] = useState(true);
-
+  const [disabled, setDisable] = useState(true);
 
   let InputDivsInfo = [
     {
@@ -43,10 +45,10 @@ function UserDetail() {
       value: userInfo.full_name,
       type: "text",
       onChange: event => {
-        setUserInfo({...userInfo,full_name:event.target.value})
+        setUserInfo({ ...userInfo, full_name: event.target.value });
       },
       onFocus: (_, reset) => {
-        setUserInfo({...userInfo,full_name:reset ? reset : ""})
+        setUserInfo({ ...userInfo, full_name: reset ? reset : "" });
       }
     },
     {
@@ -54,10 +56,10 @@ function UserDetail() {
       value: userInfo.password.substring(0, 8),
       type: "password",
       onChange: event => {
-        setUserInfo({...userInfo,password:event.target.value})
+        setUserInfo({ ...userInfo, password: event.target.value });
       },
       onFocus: (_, reset) => {
-        setUserInfo({...userInfo,password:reset ? reset : ""})
+        setUserInfo({ ...userInfo, password: reset ? reset : "" });
       }
     },
     {
@@ -65,10 +67,10 @@ function UserDetail() {
       value: userInfo.address,
       type: "text",
       onChange: event => {
-        setUserInfo({...userInfo,address:event.target.value})
+        setUserInfo({ ...userInfo, address: event.target.value });
       },
       onFocus: (_, reset) => {
-        setUserInfo({...userInfo,address:reset ? reset : ""})
+        setUserInfo({ ...userInfo, address: reset ? reset : "" });
       }
     },
     {
@@ -76,10 +78,10 @@ function UserDetail() {
       value: userInfo.city,
       type: "text",
       onChange: event => {
-        setUserInfo({...userInfo,city:event.target.value})
+        setUserInfo({ ...userInfo, city: event.target.value });
       },
       onFocus: (_, reset) => {
-        setUserInfo({...userInfo,city:reset ? reset : ""})
+        setUserInfo({ ...userInfo, city: reset ? reset : "" });
       }
     },
     {
@@ -87,10 +89,10 @@ function UserDetail() {
       value: userInfo.phone_number,
       type: "text",
       onChange: event => {
-        setUserInfo({...userInfo,phone_number:event.target.value})
+        setUserInfo({ ...userInfo, phone_number: event.target.value });
       },
       onFocus: (_, reset) => {
-        setUserInfo({...userInfo,phone_number:reset ? reset : ""})
+        setUserInfo({ ...userInfo, phone_number: reset ? reset : "" });
       }
     }
   ];
@@ -106,7 +108,7 @@ function UserDetail() {
               setUserInfo(res.data.userInfo);
             })();
       })
-      .catch(err => console.log("error: ", err));
+      .catch(err => setErrorMsg(err));
   };
   const editMode = () => {
     setDisable(false);
@@ -121,14 +123,10 @@ function UserDetail() {
     )
       .then(res =>
         res.data.error
-          ? (() => {
-              // setErrorMsg(res.data.error);
-            })()
-          : (() => {
-              // setErrorMsg(res.data.message);
-            })()
+          ? setUpdateMsg(res.data.error)
+          : setUpdateMsg(res.data.message)
       )
-      .catch(err => console.log("error: ", err));
+      .catch(err => setErrorMsg(err));
 
     setDisable(true);
   };
@@ -148,25 +146,29 @@ function UserDetail() {
         </Button>
       </div>
       <form>
-        {InputDivsInfo.map((objInput, i) => (
-          <div key={i} className={classes.root}>
-            <TextField
-              InputProps={{ classes: { root: classes.inputRoot } }}
-              InputLabelProps={{
-                classes: {
-                  root: classes.labelRoot
-                }
-              }}
-              label={objInput.labelName}
-              value={objInput.value}
-              type={objInput.type}
-              onChange={objInput.onChange}
-              onFocus={objInput.onFocus}
-              placeholder={`Enter your new ${objInput.labelName}`}
-              disabled={disabled}
-            />
-          </div>
-        ))}
+        {errorMsg ? (
+          <Message message={errorMsg} severity={"error"} />
+        ) : (
+          InputDivsInfo.map((objInput, i) => (
+            <div key={i} className={classes.root}>
+              <TextField
+                InputProps={{ classes: { root: classes.inputRoot } }}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.labelRoot
+                  }
+                }}
+                label={objInput.labelName}
+                value={objInput.value}
+                type={objInput.type}
+                onChange={objInput.onChange}
+                onFocus={objInput.onFocus}
+                placeholder={`Enter your new ${objInput.labelName}`}
+                disabled={disabled}
+              />
+            </div>
+          ))
+        )}
         {!disabled ? (
           <Button
             variant="contained"
@@ -179,6 +181,9 @@ function UserDetail() {
           ""
         )}
       </form>
+      {updateMsg ? (
+          <Message message={updateMsg} severity={"success"} />
+        ) : ''}
     </fieldset>
   );
 }

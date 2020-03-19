@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { postRequest } from "../../utils/axios.js";
-import ErrorMessage from "../../components/ErrorMessage";
+import Message from "../../components/Message";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -31,7 +31,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
 export default function LogInInputs() {
   const classes = useStyles();
 
@@ -40,26 +39,26 @@ export default function LogInInputs() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const handelReset = () => {
-  setUsername("");
-  setPassword("");
+    setUsername("");
+    setPassword("");
   };
-  
+
   const handelSubmit = event => {
     event.preventDefault();
     postRequest("/authenticate", {
       username,
       password
     })
-  .then(res =>
-    res.data.error
-    ? (() => {
-    setErrorMsg(res.data.error);
-    handelReset();
-    })()
-    : (window.location = res.data.redirect)
-    )
-    .catch(err => console.log("error: ", err));
-  }
+      .then(res =>
+        res.data.error
+          ? (() => {
+              setErrorMsg(res.data.error);
+              handelReset();
+            })()
+          : (window.location = res.data.redirect)
+      )
+      .catch(err => setErrorMsg(err));
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -111,9 +110,9 @@ export default function LogInInputs() {
             color="primary"
             className={classes.submit}
           >
-              LOG IN
+            LOG IN
           </Button>
-          {errorMsg ? <ErrorMessage message= {errorMsg}/> : "" }
+          {errorMsg ? <Message message={errorMsg} severity={"error"} /> : ""}
           <Grid container justify="flex-end">
             <Grid item>
               <Link to="/SignUp">Don't have an account? Sign Up</Link>

@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { postRequest } from "../../utils/axios.js";
 import Cookie from "js-cookie";
-import ErrorMessage from "../../components/ErrorMessage";
+import Message from "../Message";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -72,7 +72,7 @@ export default function SignUpInputs() {
               Cookie.set("token", res.data.token, { expires: 1 });
             })()
       )
-      .catch(err => console.log("error: ", err));
+      .catch(err => setErrorMsg(err));
   };
 
   return (
@@ -188,7 +188,7 @@ export default function SignUpInputs() {
           >
             Sign Up
           </Button>
-          {errorMsg ? <ErrorMessage message= {errorMsg}/> : "" }
+          {errorMsg ? <Message message={errorMsg} severity={"error"} /> : ""}
           <Grid container justify="flex-end">
             <Grid item>
               <Link to="/LogIn">Already have an account? Sign in</Link>

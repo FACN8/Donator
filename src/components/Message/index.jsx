@@ -15,12 +15,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ErrorMessage({message}) {
+export default function Message({message,severity}) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Alert severity="error">{message}</Alert>
+      <Alert severity={severity}>{message}</Alert>
     </div>
   );
 }

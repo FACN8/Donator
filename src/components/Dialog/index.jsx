@@ -20,7 +20,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import "./style.css";
 import { postRequest } from "../../utils/axios.js";
 import Cookie from "js-cookie";
-import ErrorMessage from "../../components/ErrorMessage";
+import Message from "../../components/Message";
 import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles(theme => ({
@@ -180,7 +180,7 @@ function Login(props) {
               LOG IN
             </Button>
           </ListItem>
-          {errorMsg ? <ErrorMessage message={errorMsg} /> : ""}
+          <Message message={errorMsg} severity={'error'}/>
         </form>
         <ListItem>
           <FormControlLabel
