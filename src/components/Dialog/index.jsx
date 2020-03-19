@@ -110,7 +110,7 @@ function Login(props) {
               window.location = res.data.redirect;
               Cookie.set("token", res.data.token, { expires: 1 });
             })()
-      )
+          )
       .catch(err => setErrorMsg(err));
   };
 
@@ -214,6 +214,11 @@ Login.propTypes = {
 
 function DialogInput() {
   const classes = useStyles();
+  const [showContact, setShowContact] = React.useState(false);
+  const [whoAreWe, setWhoAreWE] = React.useState(false);
+  const [ourGoal, setOurGoal] = React.useState(false);
+
+
 
   return (
     <div>
@@ -226,19 +231,35 @@ function DialogInput() {
       </form>
       <form className={`footer ${classes.btnBottom}`}>
         <div className="footer-buttons">
-          <Button variant="outlined" color="primary">
+
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => setShowContact(oldShowContact => !oldShowContact)}
+          >
             Contact Us
           </Button>
+          {showContact && <div>Contact us by Email:  Donations_Organization_haifa@gmail.com</div>}
         </div>
         <div className="footer-buttons">
-          <Button variant="outlined" color="primary">
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => setWhoAreWE(oldWhoAreWe => !oldWhoAreWe)}
+          >
             Who Are We
           </Button>
+          {whoAreWe && <div>We are a a nonprofit organization that works with several faithful charitable organizations.  </div>}
         </div>
         <div className="footer-buttons">
-          <Button variant="outlined" color="primary">
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={()=>setOurGoal(oldOurGoal => !oldOurGoal)}
+            >
             Our Goal
           </Button>
+          {ourGoal && <div>Our goal is to make it easy for you to donate with things you don't need anymore in an easy way so that we all make the world better, share donations, share love :)</div>}
         </div>
       </form>
     </div>
