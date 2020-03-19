@@ -9,18 +9,18 @@ export default function ContactUs (){
         <div>
         <form action="/">
         <label>First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="First Name" />
+        <input style={{border: '1px solid #ccc'}} type="text" id="fname" name="firstname" placeholder="First Name" />
         <label>Last Name</label>
-        <input type="text" id="lname" name="Last Name" placeholder="Last Name" />
+        <input style={{border: '1px solid #ccc'}} type="text" id="lname" name="Last Name" placeholder="Last Name" />
     
     
         <label>Email</label>
-        <input type="email" id="email" name="email" placeholder="Your email" />
+        <input style={{border: '1px solid #ccc'}} type="email" id="email" name="email" placeholder="Your email" />
     
     
         <label>Message</label>
-        <textarea rows="10" cols="10" id="subject" name="subject" placeholder="Reason for contacting us"></textarea>
-        <input type="submit" value="Submit" />
+        <textarea style={{border: '1px solid #ccc'}} rows="10" cols="10" id="subject" name="subject" placeholder="Reason for contacting us"></textarea>
+        <input style={{border: '1px solid #ccc'}} type="submit" value="Submit" />
         </form>
         </div>
         </div>

@@ -49,7 +49,7 @@ function DropDown({setDonateInfo, donateInfo}) {
         </NativeSelect>
         <FormHelperText>Choose a Category </FormHelperText>
       </FormControl>
-      <RadioButtons/>
+      <RadioButtons setDonateInfo={setDonateInfo} donateInfo={donateInfo}/>
     </div>
   );
 }

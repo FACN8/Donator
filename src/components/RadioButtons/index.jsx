@@ -4,6 +4,7 @@ import Radio from "@material-ui/core/Radio";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { getRequest } from "../../utils/axios.js";
 import Cookie from "js-cookie";
+import Message from "../Message";
 
 const useStyles = makeStyles(theme => ({
   HelperText: {
@@ -17,11 +18,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function RadioButtons() {
+export default function RadioButtons({donateInfo, setDonateInfo}) {
   const classes = useStyles();
-  const [selectedValue, setSelectedValue] = React.useState("a");
+  const [selectedValue, setSelectedValue] = React.useState(0);
   const token = Cookie.get("token") ? Cookie.get("token") : null;
-  const [orgInfo, setOrgInfo] = React.useState("");
+  const [orgInfo, setOrgInfo] = React.useState([]);
+  const [errorMsg, setErrorMsg] = React.useState("");
 
   React.useEffect(() => {
     fetchOrgInfo();
@@ -30,19 +32,14 @@ export default function RadioButtons() {
   const fetchOrgInfo = () => {
     getRequest("/orgInfo", token)
       .then(res => {
-        res.data.error
-          ? (() => {
-              window.location = "/";
-            })()
-          : (() => {
-              setOrgInfo(res.data.orgInfo);
-            })();
+        res.data.error ? (window.location = "/") : setOrgInfo(res.data.orgInfo);
       })
-      .catch(err => console.log("error: ", err));
+      .catch(err => setErrorMsg(err));
   };
 
   const handleChange = event => {
     setSelectedValue(event.target.value);
+    setDonateInfo({...donateInfo, org_id: event.target.value})
   };
 
   return (
@@ -50,21 +47,26 @@ export default function RadioButtons() {
       <h2>
         <center>Select an Organization</center>
       </h2>
-      {orgInfo.map((org, i) => (
-        <div key={i}>
-          <FormHelperText className={classes.HelperText}>
-            {org.name}
-          </FormHelperText>
-          <Radio
-            className={classes.Radio}
-            checked={selectedValue === org.id}
-            onChange={handleChange}
-            value={org.id}
-            name="radioButton"
-            inputProps={{ "aria-label": org.name }}
-          />
-        </div>
-      ))}
+      {errorMsg ? (
+        <Message message={errorMsg} severity={"error"} />
+      ) : (
+        orgInfo.map((org, i) => (
+          <div key={i}>
+            <FormHelperText className={classes.HelperText}>
+              {org.name}
+            </FormHelperText>
+            <Radio
+              className={classes.Radio}
+              checked={selectedValue == org.id}
+              onChange={handleChange}
+              value={org.id}
+              name="radioButton"
+              inputProps={{ "aria-label": org.name }}
+
+            />
+          </div>
+        ))
+      )}
     </div>
   );
 }
