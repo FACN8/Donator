@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
   header: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   close: {
     cursor: "pointer",
@@ -103,22 +103,25 @@ function Login(props) {
       .then(res =>
         res.data.error
           ? (() => {
-            setErrorMsg(res.data.error);
-            handelReset();
-          })()
+              setErrorMsg(res.data.error);
+              handelReset();
+            })()
           : (() => {
-            window.location = res.data.redirect;
-            Cookie.set("token", res.data.token, { expires: 1 });
-          })()
-      )
-      .catch(err => console.log("error: ", err));
+              window.location = res.data.redirect;
+              Cookie.set("token", res.data.token, { expires: 1 });
+            })()
+          )
+      .catch(err => setErrorMsg(err));
   };
 
   return (
     <Dialog aria-labelledby="dialog-title" open={open}>
       <DialogTitle className={classes.header} id="dialog-title">
         Welcome Back We've Missed You!
-        <CloseIcon className={classes.close} onClick={() => handleListItemClick()}></CloseIcon>
+        <CloseIcon
+          className={classes.close}
+          onClick={() => handleListItemClick()}
+        ></CloseIcon>
       </DialogTitle>
       <List>
         <form onSubmit={handelSubmit}>
@@ -137,6 +140,7 @@ function Login(props) {
                 label="Username"
                 value={values.username}
                 onChange={handleChange("username")}
+                required
               />
             </FormControl>
           </ListItem>
@@ -156,6 +160,7 @@ function Login(props) {
                 type={values.showPassword ? "text" : "password"}
                 value={values.password}
                 onChange={handleChange("password")}
+                required
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -180,7 +185,7 @@ function Login(props) {
               LOG IN
             </Button>
           </ListItem>
-          <Message message={errorMsg} severity={'error'}/>
+          {errorMsg ? <Message message={errorMsg} severity={"error"} /> : ""}
         </form>
         <ListItem>
           <FormControlLabel
