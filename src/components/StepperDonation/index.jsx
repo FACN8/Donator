@@ -13,12 +13,12 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    marginTop: '10%'
+    marginTop: 50
   },
   button: {
     marginRight: theme.spacing(1),
-    marginTop: '20%',
-    marginBottom: '30%'
+    marginTop: 100,
+    marginBottom: 50 
   },
   instructions: {
     marginTop: theme.spacing(15),
@@ -30,22 +30,31 @@ function getSteps() {
   return ['Choose Category', 'Delivery Time', 'Other'];
 }
 
-function getStepContent(step) {
+
+function getStepContent(step, {setDonateInfo, donateInfo}) {
   switch (step) {
     case 0:
-      return <DropDown/>;
+      return <DropDown setDonateInfo={setDonateInfo} donateInfo={donateInfo}/> ;
     case 1:
-      return <DeliveryTime/>;
+      return <DeliveryTime setDonateInfo={setDonateInfo} donateInfo={donateInfo}/>;
     case 2:
-      return <DonationOther/>;
+      return <DonationOther setDonateInfo={setDonateInfo} donateInfo={donateInfo}/>;
     default:
-      return 'Unknown step';
+      return 'No Step Found!';
   }
 }
 
 export default function StepperDonation() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+
+  const [donateInfo, setDonateInfo] = React.useState({
+    org_id: '',
+    donation_type: '',
+    donation_info: '',
+    delivery_time: '',
+  })
+
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
 
@@ -65,6 +74,7 @@ export default function StepperDonation() {
     setActiveStep(0);
   };
 
+    console.log(donateInfo)
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep}>
@@ -96,7 +106,7 @@ export default function StepperDonation() {
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography className={classes.instructions}>{getStepContent(activeStep, {setDonateInfo,donateInfo})}</Typography>
             <div>
               <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back
@@ -107,7 +117,7 @@ export default function StepperDonation() {
                 onClick={handleNext}
                 className={classes.button}
               >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                {activeStep === steps.length - 1 ? 'Donate' : 'Next'}
               </Button>
             </div>
           </div>
