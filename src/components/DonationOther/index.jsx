@@ -18,11 +18,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function DonationOther() {
+function DonationOther({setDonateInfo, donateInfo}) {
   const classes = useStyles();
   const [value, setValue] = React.useState("");
 
   const handleChange = event => {
+    setDonateInfo({...donateInfo, donation_info: event.target.value})
     setValue(event.target.value);
   };
 

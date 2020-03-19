@@ -7,7 +7,6 @@ import OrgBubble from "../../components/OrgBubble";
 import './style.css'
 import Cookie from "js-cookie";
 
-
 function LandingPage() {
   Cookie.set("token", 'no access', { expires: 1 });
   return (

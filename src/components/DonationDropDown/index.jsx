@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import RadioButtons from "../RadioButtons"
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -15,13 +16,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function DropDown() {
+function DropDown({setDonateInfo, donateInfo}) {
   const classes = useStyles();
   const [state, setState] = React.useState({
    category: ''
   });
 
   const handleChange = name => event => {
+    setDonateInfo({...donateInfo, donation_type: event.target.value})
     setState({
       ...state,
       [name]: event.target.value
@@ -42,11 +44,12 @@ function DropDown() {
           <option value="" disabled>
             Please Choose
           </option>
-          <option value={10}>Clothes</option>
-          <option value={20}>Resources</option>
+          <option value='clothes' >Clothes</option>
+          <option value='resources'>Resources</option>
         </NativeSelect>
         <FormHelperText>Choose a Category </FormHelperText>
       </FormControl>
+      <RadioButtons setDonateInfo={setDonateInfo} donateInfo={donateInfo}/>
     </div>
   );
 }

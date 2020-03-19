@@ -18,16 +18,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function DeliveryTime() {
+function DeliveryTime({ setDonateInfo, donateInfo }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     time: ""
   });
 
-  const handleChange = name => event => {
+  const handleChange = time => event => {
+    setDonateInfo({ ...donateInfo, delivery_time: event.target.value });
     setState({
       ...state,
-      [name]: event.target.value
+      [time]: event.target.value
     });
   };
 
@@ -45,16 +46,19 @@ function DeliveryTime() {
           <FormHelperText className={classes.chooseTime}>
             Please Choose Time
           </FormHelperText>
-          <NativeSelect>
-            label="Please Choose Time" className={classes.selectEmpty}
+          <NativeSelect
+            label="Please Choose Time" 
+            className={classes.selectEmpty}
             value={state.time}
-            name="time" onChange={handleChange("time")}>
+            name="time" 
+            onChange={handleChange("time")}
+            >
             <option value="" disabled>
               Please Choose Time
             </option>
-            <option value={10}>8:00 - 12:00</option>
-            <option value={20}>14:00 - 18:00</option>
-            <option value={30}>Other</option>
+            <option value="8:00-12:00">8:00 - 12:00</option>
+            <option value="14:00 - 18:00">14:00 - 18:00</option>
+            <option value="other">Other</option>
           </NativeSelect>
         </div>
       </FormControl>

@@ -8,7 +8,7 @@ export class Video extends Component {
                 
             <div>
             <center>   
-                  <Player width= "90%" url="https://www.youtube.com/watch?v=Odg1BIfq60E" autoPlay muted />
+                  <Player width= "70%" url="https://www.youtube.com/watch?v=Odg1BIfq60E" autoPlay muted />
                 </center>
             </div>
         )

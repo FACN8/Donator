@@ -17,11 +17,12 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Grid from "@material-ui/core/Grid";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import "./style.css";
 import { postRequest } from "../../utils/axios.js";
 import Cookie from "js-cookie";
 import Message from "../../components/Message";
 import CloseIcon from "@material-ui/icons/Close";
+import Collapse from '@material-ui/core/Collapse';
+import ContactUs from "../ContactUs";
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   },
   btnBottom: {
     display: "flex",
-    justifyContent: "space-around"
+    justifyContent: "space-evenly"
   },
   margin: {
     marginLeft: 60
@@ -58,6 +59,16 @@ const useStyles = makeStyles(theme => ({
   close: {
     cursor: "pointer",
     marginLeft: 15
+  },
+  SlideDown: {
+    width: 150,
+    display: 'flex',
+    flexDirection: "column"
+  }, 
+  paragraph: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: "column"
   }
 }));
 
@@ -214,52 +225,64 @@ Login.propTypes = {
 
 function DialogInput() {
   const classes = useStyles();
-  const [showContact, setShowContact] = React.useState(false);
-  const [whoAreWe, setWhoAreWE] = React.useState(false);
-  const [ourGoal, setOurGoal] = React.useState(false);
-
-
+  
+  const [open, setOpen] = useState(false);
+  const [whoOpen, setWhoOpen] = useState(false);
+  const [goalOpen, setGoalOpen] = useState(false);
 
   return (
     <div>
       <form className={classes.btnPrimary}>
         <div>
           <Button variant="contained" color="primary">
-            <Link to="/SignUp">SIGN UP</Link>
+            <Link style={{textDecoration: 'none', color: 'white'}} to="/SignUp">SIGN UP</Link>
           </Button>
         </div>
       </form>
-      <form className={`footer ${classes.btnBottom}`}>
+      <form className={classes.btnBottom}>
         <div className="footer-buttons">
-
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => setShowContact(oldShowContact => !oldShowContact)}
-          >
+          <Button 
+          onClick={() => setOpen(!open)}
+          aria-controls="collapse-text"
+          aria-expanded={open}
+          variant="outlined" 
+          color="primary">
             Contact Us
           </Button>
-          {showContact && <div>Contact us by Email:  Donations_Organization_haifa@gmail.com</div>}
+          {open ? <Collapse in={open}>
+            <ContactUs/>
+        </Collapse> : "" }
         </div>
-        <div className="footer-buttons">
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => setWhoAreWE(oldWhoAreWe => !oldWhoAreWe)}
-          >
+        <div className={classes.SlideDown}>
+          <Button 
+          onClick={() => setWhoOpen(!whoOpen)}
+          aria-controls="collapse-text"
+          aria-expanded={whoOpen}
+          variant="outlined" 
+          color="primary">            
             Who Are We
           </Button>
-          {whoAreWe && <div>We are a a nonprofit organization that works with several faithful charitable organizations.  </div>}
+          {whoOpen ? <Collapse in={whoOpen}>
+            <p className={classes.paragraph}>Three Students that started their journey 4 months ago
+              at KavMashvi-Coding bootcamp - that got the opportunity to help 
+              the community by brainstorming problems people are facing.
+            </p>
+        </Collapse> : "" }
         </div>
-        <div className="footer-buttons">
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={()=>setOurGoal(oldOurGoal => !oldOurGoal)}
-            >
-            Our Goal
+        <div className={classes.SlideDown}>
+          <Button 
+          onClick={() => setGoalOpen(!goalOpen)}
+          aria-controls="collapse-text"
+          aria-expanded={goalOpen}
+          variant="outlined" 
+          color="primary">
+            Our Goal 
           </Button>
-          {ourGoal && <div>Our goal is to make it easy for you to donate with things you don't need anymore in an easy way so that we all make the world better, share donations, share love :)</div>}
+          {goalOpen ? <Collapse in={goalOpen}>
+            <p className={classes.paragraph}>Our Goal is building a website that makes donating easier 
+              and more flexible without the hassle of worrying about finding
+              an organization or getting to one. </p>
+        </Collapse> : "" }
         </div>
       </form>
     </div>
