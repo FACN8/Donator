@@ -8,7 +8,6 @@ import EqualizerIcon from "@material-ui/icons/Equalizer";
 import Box from "@material-ui/core/Box";
 import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
-import NavCircle from "../NavCircle";
 import UserDetail from "../UserDetail";
 import OrgStatistic from "../OrgStatistic";
 
@@ -74,7 +73,6 @@ export default function Dashboard() {
 
   return (
     <div>
-      <NavCircle />
       <Paper square>
         <Tabs
           value={value}
@@ -82,7 +80,7 @@ export default function Dashboard() {
           variant="fullWidth"
           indicatorColor="secondary"
           textColor="secondary"
-          aria-label="icon label tabs example"
+          aria-label="label tabs"
         >
           <Tab icon={<PersonIcon />} {...a11yProps(0)} label="Profile" />
           <Tab icon={<EqualizerIcon />} {...a11yProps(1)} label="Stastics" />
