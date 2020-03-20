@@ -13,10 +13,10 @@ A place which makes your life a bit more easy when doing a good deed. Stop worry
 
 ## Table of Contents
 
-Open [Donator](https://donator.netlify.com) to view it in the browser.	
+Open [Donator](https://donator.netlify.com) to view it in the browser.
 
 * [TOC]
-* 
+
 ---
 
 ## :page_with_curl: Overview
@@ -117,5 +117,3 @@ gantt
 ```
 
 ## [Go To Donator Server](https://github.com/FACN8/Donator-server)
-
-
