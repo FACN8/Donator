@@ -17,6 +17,8 @@ Open [Donator](https://donator.netlify.com) to view it in the browser.
 
 * [Overview](#page_with_curl-overview)
 * [Installing Locally](#floppy_diskpackage-installing-locally)
+* [UserStory](#user_story)
+* [Project TimeLine](#project_timeline)
 ---
 
 ## :page_with_curl: Overview
