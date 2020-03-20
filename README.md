@@ -40,80 +40,16 @@ This website will make it easier for them to donate clothes without the hassle o
 
 User story
 ---
+![](https://i.imgur.com/Wovxgv0.png)
 
-```gherkin=
-Feature: Donate Your Old Clothes/Resources
-
-  # The first step 
-  Scenario: User Reads the front page - 
-    user watches video 
-    and discover which orgs we     work with 
-    and who are we.
-    
-    When the User clicks sign-up he's redirected 
-    to the sign up page
-    
-    Then the User Puts in his details
-
-  # The second Step has three steps
-  Scenario: User Clicks on Donate now - afte he reads about the orgs
-    Given the User has clicked donate now - is redirected to the donation page
-    
-    When the User sees the Donation page he has three steps to go over: 
-    1) what to donate - and which org to donate to
-    
-    2) which time the delivery driver can come pick up his donation
-    
-    3) has an option to include any additional info
-    
-    Then the User clicks Donate at the last step to process his request
-```
+![](https://i.imgur.com/fbJmX2x.png)
 
 > I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it. [name=Bill Gates]
 
-
-```gherkin=
-Feature: Profile Page - Statistics
-
-  As a User 
-  I want to change my details and see how many times i donated to the specific org- 
-  i click on my profile - i have an option to edit and change any given info.
-
-  Scenario: User click statistics Tab
-  
-    Given I'm a logged-in User
-    
-    When I go to the Statistic tab
-    
-    Then the amount of times i donated to the specific org i chose is shown
-    
-    And my subtotal should increment everytime i donate to the same org
-    
-```
-
-
 Project Timeline
 ---
-```mermaid
-gantt
-       dateFormat  YY-M-DD
-       title Spring Week 1 
 
-       section Front-End
-       Client-side   :done,    des, 20-3-08,20-3-12
+![TimeLine](https://i.imgur.com/auOerEt.png)
 
-
-
-```
-
-```mermaid
-gantt
-       dateFormat  YY-M-DD
-       title Spring Week 2 
-
-       section Back-End
-       Server   :done,    des, 20-3-15,20-3-19
-
-```
 
 ## [Go To Donator Server](https://github.com/FACN8/Donator-server)
