@@ -15,8 +15,8 @@ A place which makes your life a bit more easy when doing a good deed. Stop worry
 
 Open [Donator](https://donator.netlify.com) to view it in the browser.
 
-* [TOC]
-
+* [Overview](#page_with_curl-overview)
+* [Installing Locally](#floppy_diskpackage-installing-locally)
 ---
 
 ## :page_with_curl: Overview
