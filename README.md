@@ -47,8 +47,6 @@ User story
 
 ![](https://i.imgur.com/fbJmX2x.png)
 
-> I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it. [name=Bill Gates]
-
 Project Timeline
 ---
 
